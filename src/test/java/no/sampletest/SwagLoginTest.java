@@ -1,5 +1,7 @@
 package no.sampletest;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -11,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import junit.framework.Assert;
 
 public class SwagLoginTest {
 
@@ -43,7 +44,7 @@ public class SwagLoginTest {
 
 		String actualErrorMsg = "Epic sadface: Username and password do not match any user in this service";
 		String expectedErrorMsg = loginErrorMsg.getText();
-		Assert.assertEquals(expectedErrorMsg, actualErrorMsg);
+		assertEquals(expectedErrorMsg, actualErrorMsg);
 	}
 
 	@Test
@@ -94,8 +95,8 @@ public class SwagLoginTest {
 				"//div[@class='cart_list']/div[@class='cart_item']/div[@class='cart_item_label']/a/div[text()='Sauce Labs Backpack']")));
 		System.out.println(verifyCartbackpack.getText());
 
-		Assert.assertEquals(product1, verifyCartJacket.getText());
-		Assert.assertEquals(product2, verifyCartbackpack.getText());
+		assertEquals(product1, verifyCartJacket.getText());
+		assertEquals(product2, verifyCartbackpack.getText());
 
 		WebElement checkoutButtonElement = driver.findElement(By.id("checkout"));
 		checkoutButtonElement.click();
@@ -113,23 +114,23 @@ public class SwagLoginTest {
 		continueButtonElement.click();
 
 		WebElement paymentInfoElement = driver.findElement(By.xpath("//div[text()='SauceCard #31337']"));
-		Assert.assertEquals("SauceCard #31337", paymentInfoElement.getText());
+		assertEquals("SauceCard #31337", paymentInfoElement.getText());
 
 		WebElement shippingElement = driver.findElement(By.xpath("//div[text()='FREE PONY EXPRESS DELIVERY!']"));
-		Assert.assertEquals("FREE PONY EXPRESS DELIVERY!", shippingElement.getText());
+		assertEquals("FREE PONY EXPRESS DELIVERY!", shippingElement.getText());
 		
 		//xpath with substring function
 //			WebElement totalElement = driver.findElement(By.xpath("substring-after(//div[@class='summary_total_label'],':')"));
 		WebElement totalElement = driver.findElement(By.xpath("//div[@class='summary_total_label']"));
 		String total = totalElement.getText();
 		int index = total.indexOf('$');
-		Assert.assertEquals("$86.38", total.substring(index));
+		assertEquals("$86.38", total.substring(index));
 
 		WebElement finishButtonElement = driver.findElement(By.id("finish"));
 		finishButtonElement.click();
 
 		WebElement confirmOrderElement = driver.findElement(By.xpath("//h2[@class='complete-header']"));
-		Assert.assertEquals("THANK YOU FOR YOUR ORDER", confirmOrderElement.getText());
+		assertEquals("THANK YOU FOR YOUR ORDER", confirmOrderElement.getText());
 
 		WebElement logoutMenuElement = driver.findElement(By.id("react-burger-menu-btn"));
 		logoutMenuElement.click();
