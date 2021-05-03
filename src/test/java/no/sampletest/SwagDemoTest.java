@@ -96,18 +96,16 @@ public class SwagDemoTest {
 				.findElement(By.xpath("//div[@id='shopping_cart_container']/a[contains(@class,'shopping_cart_link')]"));
 		clickCartElement.click();
 
-		WebElement verifyCartJacket = driver.findElement((By.xpath(
+		WebElement verifyCartJacketElement = driver.findElement((By.xpath(
 				"//div[@class='cart_list']/div[@class='cart_item']/div[@class='cart_item_label']/a/div[text()='Sauce Labs Fleece Jacket']")));
-//		System.out.println(verifyCartJacket.getText());
 
-		WebElement verifyCartbackpack = driver.findElement((By.xpath(
+		WebElement verifyCartbackpackElement = driver.findElement((By.xpath(
 				"//div[@class='cart_list']/div[@class='cart_item']/div[@class='cart_item_label']/a/div[text()='Sauce Labs Backpack']")));
-//		System.out.println(verifyCartbackpack.getText());
 
 		//• Verify that the “Sauce labs fleece jacket” is in the cart (Verify with assert)
-		assertEquals("Sauce Labs Fleece Jacket", verifyCartJacket.getText());
+		assertEquals("Sauce Labs Fleece Jacket", verifyCartJacketElement.getText());
 		//• Verify that the “Sauce labs backpack” is in the cart (Verify with assert)
-		assertEquals("Sauce Labs Backpack", verifyCartbackpack.getText());
+		assertEquals("Sauce Labs Backpack", verifyCartbackpackElement.getText());
 
 		//• Checkout and enter in your information in the available fields.
 		WebElement checkoutButtonElement = driver.findElement(By.id("checkout"));
