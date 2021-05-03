@@ -14,7 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 
-public class SwagLoginTest {
+public class SwagDemoTest {
 
 	private WebDriver driver;
 
