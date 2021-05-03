@@ -26,7 +26,7 @@ public class SwagLoginTest {
 
 	@Test
 	public void testLoginFailed() {
-		System.out.println("######## Test Case1 #######");
+		System.out.println("######## Test Case1 ######");
 		driver.get("https://www.saucedemo.com/");
 		WebElement username = driver.findElement(By.id("user-name"));
 		WebElement password = driver.findElement(By.id("password"));
