@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 /**
  * Selenium Test cases for Swag Labs Demo page
  * @author Rashmi
+ * @version 1.0
  */
 public class SwagDemoTest {
 
@@ -44,7 +45,6 @@ public class SwagDemoTest {
 		WebElement login = driver.findElement(By.xpath("//input[@id='login-button']"));
 
 		username.sendKeys("locked_out_user");
-		username.sendKeys("standard_user");
 		password.sendKeys("secret_sauce");
 		login.click();
 
@@ -52,7 +52,7 @@ public class SwagDemoTest {
 
 		WebElement loginErrorMsg = driver.findElement(By.xpath("//h3[@data-test='error']"));
 
-		String actualErrorMsg = "Epic sadface: Username and password do not match any user in this service";
+		String actualErrorMsg = "Epic sadface: Sorry, this user has been locked out.";
 		String expectedErrorMsg = loginErrorMsg.getText();
 		assertEquals(expectedErrorMsg, actualErrorMsg);
 	}
@@ -79,18 +79,18 @@ public class SwagDemoTest {
 		//• Check that the price of the “Sauce Labs Fleece Jacket” is 49 dollars
 		driver.findElement(By.xpath(
 				"//div[text()='Sauce Labs Fleece Jacket']/ancestor::div[@class='inventory_item_label']/following-sibling::div[@class='pricebar']/div[contains(string(),'$49')]"));
-		
+
+		//• Add the “Sauce Labs Fleece Jacket” to the basket
+		WebElement backPackToCartElement = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
+		backPackToCartElement.click();
+
 		//• Check that the price of the “Sauce Labs Backpack” is 29 dollars
 		driver.findElement(By.xpath(
 				"//div[text()='Sauce Labs Backpack']/ancestor::div[@class='inventory_item_label']/following-sibling::div[@class='pricebar']/div[contains(string(),'$29')]"));
 		
-		//• Add the “Sauce Labs Backpack” to the basket
+		//• Add the “Sauce Labs Backpack” add to the basket
 		WebElement jacketToCartElement = driver.findElement(By.id("add-to-cart-sauce-labs-backpack"));
 		jacketToCartElement.click();
-
-		//Add the “Sauce Labs Fleece Jacket” to the basket
-		WebElement backPackToCartElement = driver.findElement(By.id("add-to-cart-sauce-labs-fleece-jacket"));
-		backPackToCartElement.click();
 
 		WebElement clickCartElement = driver
 				.findElement(By.xpath("//div[@id='shopping_cart_container']/a[contains(@class,'shopping_cart_link')]"));
@@ -123,11 +123,11 @@ public class SwagDemoTest {
 		WebElement continueButtonElement = driver.findElement(By.id("continue"));
 		continueButtonElement.click();
 		
-		//Verify that the Payment information is “SauceCard #31337” (Verify with assert)
+		//• Verify that the Payment information is “SauceCard #31337” (Verify with assert)
 		WebElement paymentInfoElement = driver.findElement(By.xpath("//div[text()='SauceCard #31337']"));
 		assertEquals("SauceCard #31337", paymentInfoElement.getText());
 
-		//Verify that the shipping information is “FREE PONY EXPRESS DELIVERY!” (Verify with assert)
+		//• Verify that the shipping information is “FREE PONY EXPRESS DELIVERY!” (Verify with assert)
 		WebElement shippingElement = driver.findElement(By.xpath("//div[text()='FREE PONY EXPRESS DELIVERY!']"));
 		assertEquals("FREE PONY EXPRESS DELIVERY!", shippingElement.getText());
 		
@@ -141,7 +141,7 @@ public class SwagDemoTest {
 		WebElement finishButtonElement = driver.findElement(By.id("finish"));
 		finishButtonElement.click();
 		
-		//Verify Order confirmation page
+		//• Verify Order confirmation page
 		WebElement confirmOrderElement = driver.findElement(By.xpath("//h2[@class='complete-header']"));
 		assertEquals("THANK YOU FOR YOUR ORDER", confirmOrderElement.getText());
 
@@ -150,7 +150,7 @@ public class SwagDemoTest {
 
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
-		//logout the application
+		//• logout the application
 		WebElement logoutElement = driver.findElement(By.xpath("//*[@id='logout_sidebar_link']"));
 		logoutElement.click();
 	}
